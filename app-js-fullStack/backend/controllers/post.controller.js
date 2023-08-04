@@ -49,18 +49,50 @@ module.exports.updatePost = async (req, res) => {
 // Delete post:
 module.exports.deletePost = async (req, res) => {
     try {
-      const post = await postModel.findById(req.params.id); // get post by id
-  
-      if (!post) {
-        return res.status(404).json({ message: "Post non trouvé" }); // send error message
-      }
-  
-      await postModel.deleteOne({ _id: post._id }); // delete the post from the database
-  
-      res.status(200).json({ message: "Post supprimé " + post._id }); // send success message
+        const post = await postModel.findById(req.params.id); // get post by id
+
+        if (!post) {
+            return res.status(404).json({ message: "Post non trouvé" }); // send error message
+        }
+
+        await postModel.deleteOne({ _id: post._id }); // delete the post from the database
+
+        res.status(200).json({ message: "Post supprimé " + post._id }); // send success message
     } catch (error) { // catch error
-      console.error("Error deleting post:", error); // log error to console
-      res.status(500).json({ message: "Erreur lors de la suppression du post" }); // send error message
+        console.error("Error deleting post:", error); // log error to console
+        res.status(500).json({ message: "Erreur lors de la suppression du post" }); // send error message
+    }
+};
+
+// (Like post):
+module.exports.likePost = async (req, res) => {
+    try {
+      const updatedPost = await postModel.findByIdAndUpdate(
+        req.params.id, // id of post to update
+        { $addToSet: { likers: req.body.userid } }, // add userid to likers array
+        { new: true } // return updated post
+      ); // update post in database
+  
+      res.status(200).json(updatedPost); // send updated post as response
+    } catch (error) {
+      console.error("Error liking post:", error); // log error to console
+      res.status(500).json({ message: "Erreur lors du like du post" }); // send error message
+    }
+  };
+
+// (Dislike post):
+module.exports.dislikePost = async (req, res) => {
+    try {
+      const updatedPost = await postModel.findByIdAndUpdate(
+        req.params.id, // id of post to update
+        { $pull: { likers: req.body.userid } }, // add userid to likers array
+        { new: true } // return updated post
+      ); // update post in database
+  
+      res.status(200).json(updatedPost); // send updated post as response
+    } catch (error) {
+      console.error("Error liking post:", error); // log error to console
+      res.status(500).json({ message: "Erreur lors du like du post" }); // send error message
     }
   };
   
