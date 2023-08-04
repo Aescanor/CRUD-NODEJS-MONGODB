@@ -1,5 +1,13 @@
 const express = require('express'); // import express
+const connectDB = require('../config/db');
+// const dotenv = require('dotenv').config() // import dotenv
+
+
 const port = 5000; // port to run server on
+
+
+// connexion à la D.B : 
+connectDB();
 
 const app = express(); // create express app
 

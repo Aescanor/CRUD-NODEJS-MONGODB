@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server " : "nodemon ./backend/server.js"
+    "server ": "nodemon ./backend/server.js"
   },
   "author": "Dammaretz Gëtan - From Scratch",
   "license": "ISC",
