@@ -1,20 +1,13 @@
 const express = require('express'); // import express
+const { setPosts, getPosts, updatePost } = require('../controllers/post.controller');
 const router = express.Router(); // create router
 
 // Read :
-router.get("/", (req, res) => { // route for GET request to root of server
-    res.json({ message: 'Hello World!' }); // send json object as response
-})
-
+router.get("/", getPosts); // route for GET request to root of server")
 // Create :
-router.post("/", (req, res) => { // route for GET request to root of server
-    console.log(req.body); // log request body to console
-    res.json({ message : req.body.message}); // send json object as response
-})
+router.post("/", setPosts ); // route for GET request to root of server")
 // Update : 
-router.put("/:id", (req, res) => { // route for GET request to root of server")
-res.json({messageId: req.params.id}); // send json object as response
-})
+router.put("/:id", updatePost); // route for GET request to root of server")
 // Delete : 
 router.delete("/:id", (req, res) => { // route for GET request to root of server") })
 res.json({message: "Post supprimé id : " + req.params.id}); // send json object as response
