@@ -1,6 +1,9 @@
 const express = require('express'); // import express
 const connectDB = require('../config/db');
-const dotenv = require('dotenv').config() // import dotenv
+const dotenv = require('dotenv') // import dotenv
+
+// path du fichier .env : app-js-fullStack\backend\.env : 
+dotenv.config({ path: '../.env' });
 
 
 const port = 5000; // port to run server on
