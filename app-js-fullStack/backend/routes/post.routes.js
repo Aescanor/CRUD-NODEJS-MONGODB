@@ -11,9 +11,10 @@ router.put("/:id", updatePost); // route for GET request to root of server")
 // Delete : 
 router.delete("/:id", deletePost); // route for GET request to root of server"
 
-// Like post :  
-router.patch("/like-post/:id", likePost); // route for GET request to root of server"
+// Partial update - Like post :
+router.patch("/:id/like", likePost); // route pour la requête PATCH à la racine du serveur
 
-// Partial update :  
-router.patch("/dislike-post/:id", dislikePost); // route for GET request to root of server"
+// Partial update (dislike):
+router.patch("/:id/dislike-post", dislikePost);
+
 module.exports = router; // export router so it can be used by other parts of the application
