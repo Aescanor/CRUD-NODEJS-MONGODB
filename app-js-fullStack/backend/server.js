@@ -26,6 +26,5 @@ app.use(express.urlencoded({ extended: false })); // use express middleware to p
 
 app.use("/post", require("./routes/post.routes")); // use post routes for requests to /post
 
-
 //Lancer le serveur : node server.js
 app.listen({port}, () => console.log(`Le serveur a démarré sur le port ${port}`)); // listen for requests
