@@ -19,7 +19,7 @@ const app = express(); // create express app
 ou 
 avant de les envoyer à la base de données (Res) (ex : vérifier si l'utilisateur est connecté avant de lui envoyer les données)  ; **/
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000','http://localhost:5000', 'http://localhost:5173', 'http://localhost:127.0.0.1:5000']
   })); // use cors middleware to allow cross-origin requests
   app.use(express.json()); // use express middleware to parse json bodies
 app.use(express.urlencoded({ extended: false })); // use express middleware to parse urlencoded bodies

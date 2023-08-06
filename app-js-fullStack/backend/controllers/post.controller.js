@@ -9,23 +9,28 @@ module.exports.getPosts = async (req, res) => {  // get all posts
 
 // Create :
 module.exports.setPosts = async (req, res) => {
-    if (!req.body.message) {
-        // If message is not provided
-        return res.status(400).json({ message: "Le message est obligatoire" }); // Send error message
+    if (!req.body.title || !req.body.picture || !req.body.message || !req.body.author) {
+        return res.status(400).json({ message: "Tous les champs sont obligatoires" });
     }
 
-    const post = await postModel.create({
-        // Create a new post
-        message: req.body.message, // Set message from request
-        author: req.body.author, // Set author from request
-    });
+    try {
+        const post = await postModel.create({
+            title: req.body.title,
+            picture: req.body.picture,
+            message: req.body.message,
+            author: req.body.author,
+        });
 
-    const response = {
-        post: post, // Post data
-        message: "Post créé", // Success message
-    };
+        const response = {
+            post: post,
+            message: "Post créé",
+        };
 
-    res.status(201).json(response); // Send the combined response
+        res.status(201).json(response);
+    } catch (error) {
+        console.error("Error creating post:", error);
+        res.status(500).json({ message: "Erreur lors de la création du post" });
+    }
 };
 
 // Update :

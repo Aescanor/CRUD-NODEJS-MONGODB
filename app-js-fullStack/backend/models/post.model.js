@@ -2,6 +2,14 @@ const mongoose = require('mongoose');   // import mongoose
 
 const postSchema = mongoose.Schema( // création du schéma de données
   {
+    title: {
+      type: String, // type du message
+      required: true,
+    },
+    picture: {
+      type: String, // image du message
+      required: true,
+    },
     message: {
       type: String, // type du message
       required: true,
