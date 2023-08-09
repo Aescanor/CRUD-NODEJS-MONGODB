@@ -13,7 +13,7 @@ const port = 5000; // port to run server on
 // connexion à la D.B : 
 connectDB();
 
-const app = express(); // create express app
+const app = express(); // create express 
 
 /** Middleware : permet de traiter les données avant de les envoyer au client (Req) 
 ou 

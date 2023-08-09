@@ -7,6 +7,17 @@ module.exports.getPosts = async (req, res) => {  // get all posts
     res.status(200).json(posts); // send posts as response
 }
 
+// Read detail by id: 
+module.exports.getPostById = async (req, res) => {
+    const post = await postModel.findById(req.params.id); // get post by id
+
+    if (!post) {
+        return res.status(404).json({ message: "Post non trouvé" }); // send error message
+    }
+
+    res.status(200).json(post); // send post as response
+}
+
 // Create :
 module.exports.setPosts = async (req, res) => {
     if (!req.body.title || !req.body.picture || !req.body.message || !req.body.author) {
